@@ -5,12 +5,12 @@
 #define QRB_ROS_IMAGE_RESIZE__RESIZE_HPP_
 
 #include "cv_bridge/cv_bridge.h"
+#include "qrb_ros_transport/type/image.hpp"
+#include <chrono>
+#include <opencv2/opencv.hpp>
 #include <rclcpp/qos.hpp>
 #include <rclcpp/rclcpp.hpp>
 #include <sensor_msgs/msg/image.hpp>
-#include <chrono>
-#include <opencv2/opencv.hpp>
-#include "qrb_ros_transport/type/image.hpp"
 
 #ifdef EVA_ENABLE
 #include "qrb_image_resize_lib/eva_utils_lib.hpp"
@@ -23,16 +23,16 @@
 
 #define CALCULATE_TIME 5
 
-namespace qrb_ros::resize
-{
-class ResizeNode : public rclcpp::Node
-{
+namespace qrb_ros::resize {
+class ResizeNode : public rclcpp::Node {
 public:
   explicit ResizeNode(const rclcpp::NodeOptions &);
 
 private:
-  std::shared_ptr<rclcpp::Subscription<qrb_ros::transport::type::Image>> image_sub_;
-  std::shared_ptr<rclcpp::Publisher<qrb_ros::transport::type::Image>> image_pub_;
+  std::shared_ptr<rclcpp::Subscription<qrb_ros::transport::type::Image>>
+      image_sub_;
+  std::shared_ptr<rclcpp::Publisher<qrb_ros::transport::type::Image>>
+      image_pub_;
 
   int interpolation_;
   bool use_scale_;

@@ -69,7 +69,7 @@ int eva_fd_convert_mem(const int32_t &fd, const uint32_t &size, evaMem **mem) {
 
 // use the unalignment width and height to storage in eva image 's sImageInfo.
 int eva_image_param(const uint32_t &width, const uint32_t &height,
-                                            const std::string &color_format, evaImage *image) {
+                    const std::string &color_format, evaImage *image) {
   image->sImageInfo.nWidth = width;
   image->sImageInfo.nHeight = height;
   evaImageInfo p_query_src_image_info;
@@ -82,20 +82,23 @@ int eva_image_param(const uint32_t &width, const uint32_t &height,
     eva_color_format = EVA_COLORFORMAT_GRAY_8BIT;
   }
   evaStatus queryimage_status = evaQueryImageInfo(
-                                      eva_color_format, width, height, &p_query_src_image_info);
+      eva_color_format, width, height, &p_query_src_image_info);
   if (queryimage_status != EVA_SUCCESS) {
     std::cerr << "[EVA COMMON] query image status failed" << std::endl;
     return -1;
   }
   for (uint32_t index = 0; index < p_query_src_image_info.nPlane; index++) {
-    image->sImageInfo.nWidthStride[index] = p_query_src_image_info.nWidthStride[index];
-    image->sImageInfo.nAlignedSize[index] = p_query_src_image_info.nAlignedSize[index];
+    image->sImageInfo.nWidthStride[index] =
+        p_query_src_image_info.nWidthStride[index];
+    image->sImageInfo.nAlignedSize[index] =
+        p_query_src_image_info.nAlignedSize[index];
   }
   image->sImageInfo.nPlane = p_query_src_image_info.nPlane;
   if (p_query_src_image_info.nTotalSize % 4096 == 0) {
     image->sImageInfo.nTotalSize = p_query_src_image_info.nTotalSize;
   } else {
-    image->sImageInfo.nTotalSize = (p_query_src_image_info.nTotalSize / 4096 + 1) * 4096;
+    image->sImageInfo.nTotalSize =
+        (p_query_src_image_info.nTotalSize / 4096 + 1) * 4096;
   }
   image->sImageInfo.eFormat = eva_color_format;
   return 0;
@@ -104,7 +107,7 @@ int eva_image_param(const uint32_t &width, const uint32_t &height,
 // alloc the buffer in dma_buf, need call eva_image_param to get the total size
 // before this api.
 evaStatus eva_mem_alloc(uint32_t size, const std::string &heap_name,
-                                                evaMemSecureType e_secure_type, evaMem **mem) {
+                        evaMemSecureType e_secure_type, evaMem **mem) {
   evaMem *p_mem = new evaMem();
   if (p_mem == NULL) {
     std::cerr << "[EVA COMMON] eva image alloc: create Mem failed" << std::endl;
@@ -144,8 +147,9 @@ evaStatus eva_mem_alloc(uint32_t size, const std::string &heap_name,
 // alloc the image in dma_buf, need call eva_image_param to get the total size
 // before this api.
 evaStatus eva_image_alloc(const std::string &heap_name,
-                                              evaMemSecureType e_secure_type, evaImage *image) {
-  return eva_mem_alloc(image->sImageInfo.nTotalSize, heap_name, e_secure_type, &(image->pBuffer));
+                          evaMemSecureType e_secure_type, evaImage *image) {
+  return eva_mem_alloc(image->sImageInfo.nTotalSize, heap_name, e_secure_type,
+                       &(image->pBuffer));
 }
 
 }; // namespace qrb::image::resize
