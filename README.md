@@ -65,7 +65,7 @@ Currently, we only support NV12 color space format downscale that based on Qualc
      ssh root@[ip-addr]
      (ssh) tar -zxf /opt/qrb_ros_image_resize.tar.gz -C /opt/qcom/qirp-sdk/usr/
      ```
-## Run  //goto
+## Run
 
 - Source this file to set up the environment on your device:
 
