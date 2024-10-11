@@ -4,28 +4,35 @@
 #ifndef QRB_IMAGE_RESIZE__EVA_UTILS_LIB_HPP_
 #define QRB_IMAGE_RESIZE__EVA_UTILS_LIB_HPP_
 
-#include "qrb_image_resize_lib/eva_common_lib.hpp"
 #include <memory>
 #include <string>
 
-namespace qrb::image::resize {
+#include "qrb_image_resize_lib/eva_common_lib.hpp"
 
-enum Eva_type {
+namespace qrb::image::resize
+{
+
+enum Eva_type
+{
   None,
   Resize,
 };
 
-class EvaUtils {
+class EvaUtils
+{
 public:
   explicit EvaUtils();
 
   ~EvaUtils();
 
-  int image_resize(const int32_t &input_fd, const uint32_t &input_width,
-                   const uint32_t input_height, int32_t &output_fd,
-                   const uint32_t &output_width, const uint32_t &output_height,
-                   const std::string &input_color_format,
-                   const int interpolation = 0);
+  int image_resize(const int32_t & input_fd,
+      const uint32_t & input_width,
+      const uint32_t input_height,
+      int32_t & output_fd,
+      const uint32_t & output_width,
+      const uint32_t & output_height,
+      const std::string & input_color_format,
+      const int interpolation = 0);
 
   bool initialized();
 
@@ -41,6 +48,6 @@ private:
   std::shared_ptr<evaHandle> handler_;
 };
 
-} // namespace qrb::image::resize
+}  // namespace qrb::image::resize
 
-#endif // QRB_IMAGE_RESIZE__EVA_UTILS_LIB_HPP_
+#endif  // QRB_IMAGE_RESIZE__EVA_UTILS_LIB_HPP_
