@@ -4,7 +4,8 @@
 #ifndef QRB_IMAGE_RESIZE__EVA_COMMON_LIB_HPP_
 #define QRB_IMAGE_RESIZE__EVA_COMMON_LIB_HPP_
 
-#include <BufferAllocator/BufferAllocator.h>
+#include "lib_mem_dmabuf/dmabuf.hpp"
+#include <linux/dma-buf.h>
 #include <sys/ioctl.h>
 #include <sys/mman.h>
 #include <unistd.h>
@@ -123,32 +124,27 @@ evaStatus eva_mem_alloc(uint32_t size,
     std::cerr << "[EVA COMMON] eva image alloc: create Mem failed" << std::endl;
     return EVA_EFAIL;
   }
-  BufferAllocator allocator;
-  uint32_t alignment = 0x100000;
-  int32_t m_fd = allocator.Alloc(heap_name, size, 0, alignment);
-  if (m_fd < 0) {
-    std::cerr << "[EVA COMMON] eva image alloc: alloc failed" << std::endl;
+  auto dmabuf = lib_mem_dmabuf::DmaBuffer::alloc(size, heap_name);
+  if (dmabuf == nullptr) {
+    std::cerr << "[EVA COMMON] eva image alloc: dma buffer alloc failed" << std::endl;
     delete p_mem;
     return EVA_EFAIL;
   }
-  uint8_t * dst = (uint8_t *)mmap(NULL, size, PROT_READ | PROT_WRITE, MAP_SHARED, m_fd, 0);
-  if (dst == MAP_FAILED) {
+  dmabuf->set_auto_release(false);
+  if (!dmabuf->map()) {
     std::cerr << "[EVA COMMON] eva image alloc: mmap failed" << std::endl;
     delete p_mem;
     return EVA_EFAIL;
   }
-  struct dma_buf_sync buf_sync;
-  buf_sync.flags = DMA_BUF_SYNC_START | DMA_BUF_SYNC_RW;
-  int32_t rc = ioctl(m_fd, DMA_BUF_IOCTL_SYNC, &buf_sync);
-  if (rc) {
+  if (!dmabuf->sync_start()) {
     std::cerr << "[EVA COMMON] eva image alloc: ioctl failed" << std::endl;
     delete p_mem;
     return EVA_EFAIL;
   }
   p_mem->eType = e_secure_type;
   p_mem->nSize = size;
-  p_mem->nFD = m_fd;
-  p_mem->pAddress = dst;
+  p_mem->nFD = dmabuf->fd();
+  p_mem->pAddress = dmabuf->addr();
   *mem = p_mem;
   return EVA_SUCCESS;
 }

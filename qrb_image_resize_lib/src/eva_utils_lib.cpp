@@ -88,7 +88,7 @@ int EvaUtils::image_resize(const int32_t & input_fd,
   dst_num_bytes = output_image.sImageInfo.nTotalSize;
 
   evaStatus status = qrb::image::resize::eva_mem_alloc(
-      dst_num_bytes, "qcom,system", EVA_MEM_NON_SECURE, &(output_image.pBuffer));
+      dst_num_bytes, "/dev/dma_heap/system", EVA_MEM_NON_SECURE, &(output_image.pBuffer));
 
   if (EVA_SUCCESS != status) {
     std::cerr << "evaMemAlloc failed for pOutput" << std::endl;
