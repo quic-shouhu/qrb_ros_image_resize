@@ -41,9 +41,9 @@ Currently, we only support NV12 color space format downscale that based on Qualc
 
 3. Clone this repository under `<qirp_decompressed_workspace>/qirp-sdk/ros_ws`
      ```bash
-     git clone https://github.com/quic-qrb-ros/lib_mem_dmabuf.git
-     git clone https://github.com/quic-qrb-ros/qrb_ros_transport.git
-     git clone https://github.com/quic-qrb-ros/qrb_ros_image_resize.git
+     git clone https://github.com/qualcomm-qrb-ros/lib_mem_dmabuf.git
+     git clone https://github.com/qualcomm-qrb-ros/qrb_ros_transport.git
+     git clone https://github.com/qualcomm-qrb-ros/qrb_ros_image_resize.git
      ```
 4. Build this project
      ```bash
