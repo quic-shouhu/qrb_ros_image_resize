@@ -119,7 +119,7 @@ Qualcomm's smart devices, use NV12 as the default image color space format. To e
 <table >
   <tr>
     <th>Development Hardware</th>
-    <td>Qualcomm Dragonwing™ RB3 Gen2</td>
+    <td>Qualcomm Dragonwing™ RB5 Gen2</td>
   </tr>
   <tr>
     <th>Hardware Overview</th>
