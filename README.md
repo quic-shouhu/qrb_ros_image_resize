@@ -119,15 +119,19 @@ Qualcomm's smart devices, use NV12 as the default image color space format. To e
 <table >
   <tr>
     <th>Development Hardware</th>
+    <td>Qualcomm Dragonwing™ RB3 Gen2</td>
   </tr>
   <tr>
     <th>Hardware Overview</th>
+    <th><a href="https://www.qualcomm.com/developer/hardware/rb3-gen-2-development-kit"><img src="https://s7d1.scene7.com/is/image/dmqualcommprod/rb3-gen2-carousel?fmt=webp-alpha&qlt=85" width="180"/></a></th>
   </tr>
   <tr>
     <th>MIPI-CSI Camera Support</th>
+    <td><li>IMX577(12MP)</li><li>OV9282(1MP)</li><li>IMX586 (48MP)</li><li>IMX686 (64MP)</li></td>
   </tr>
   <tr>
     <th>GMSL Camera Support</th>
+    <td>Leopard Imaging AR0231 GMSL2</td>
   </tr>
 </table>
 
