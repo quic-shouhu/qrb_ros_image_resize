@@ -4,7 +4,6 @@
 #ifndef QRB_IMAGE_RESIZE__EVA_COMMON_LIB_HPP_
 #define QRB_IMAGE_RESIZE__EVA_COMMON_LIB_HPP_
 
-#include "lib_mem_dmabuf/dmabuf.hpp"
 #include <linux/dma-buf.h>
 #include <sys/ioctl.h>
 #include <sys/mman.h>
@@ -19,6 +18,7 @@
 #include "evaTypes.h"
 #include "evaUtils.h"
 #include "evaWarp.h"
+#include "lib_mem_dmabuf/dmabuf.hpp"
 
 namespace qrb::image::resize
 {

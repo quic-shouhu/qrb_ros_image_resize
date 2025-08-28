@@ -12,7 +12,7 @@
 
 ## 👋 Overview
 
-Qualcomm's smart devices, use NV12 as the default image color space format. To embrace open source and facilitate developers in NV12 image to downscaling, we have developed the image resize ROS node that support EVA acceleration. The feature as follows:
+Qualcomm smart devices use NV12 as the default image color space format. To support open-source development and simplify NV12 image downscaling for developers, we have created an image resize ROS node with EVA hardware acceleration. The feature as follows:
 
 - Provide ROS node include
   - API to downscale nv12 image.
@@ -84,31 +84,31 @@ Qualcomm's smart devices, use NV12 as the default image color space format. To e
   </tr>
   <tr>
     <td>use_scale</td>
-    <td>Uint32</td>
+    <td>uint32</td>
     <td>whether enable downscale ratio</td>
     <td>false</td>
   </tr>
   <tr>
     <td>height_scale</td>
-    <td>Uint32</td>
+    <td>uint32</td>
     <td>Height downscale ratio of the output</td>
     <td>1</td>
   </tr>
   <tr>
     <td>width_scale</td>
-    <td>Uint32</td>
+    <td>uint32</td>
     <td>Width downscale ratio of the output</td>
     <td>1</td>
   </tr>
   <tr>
     <td>height</td>
-    <td>Uint32</td>
+    <td>uint32</td>
     <td>Height of the output</td>
     <td>-1</td>
   </tr>
   <tr>
     <td>width</td>
-    <td>Uint32</td>
+    <td>uint32</td>
     <td>Width of the output</td>
     <td>-1</td>
   </tr>
@@ -119,7 +119,7 @@ Qualcomm's smart devices, use NV12 as the default image color space format. To e
 <table >
   <tr>
     <th>Development Hardware</th>
-    <td>Qualcomm Dragonwing™ RB3 Gen2</td>
+    <td>Qualcomm Dragonwing™ RB5 Gen2</td>
   </tr>
   <tr>
     <th>Hardware Overview</th>
@@ -137,7 +137,7 @@ Qualcomm's smart devices, use NV12 as the default image color space format. To e
 
 ---
 
-## 👨‍💻 Build from Source
+## 👨‍💻 Build from Source (based on RB5Gen2 LU Ubuntu 22.04)
 
 Currently, we only support NV12 color space format downscale that based on Qualcomm platform that support EVA acceleration.
 
