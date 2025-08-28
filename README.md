@@ -233,4 +233,4 @@ Thanks to all our contributors who have helped make this project better!
 
 ## 📜 License
 
-> 📌 Add license declaration and a link to the license file
+Project is licensed under the [BSD-3-Clause](https://spdx.org/licenses/BSD-3-Clause.html) License. See [LICENSE](./LICENSE) for the full license text.
